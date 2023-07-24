@@ -2,16 +2,52 @@ import flet as ft
 
 def main(page: ft.Page):
     page.title = "Calculator"
-    page.scroll= "adaptive"   
 
- 
+    page.fonts = {
+        "RobotoMono-Regular" : "RobotoMono-Regular.ttf",
+        "RobotoMono-Bold" : "RobotoMono-Bold.ttf",  
+    }
+
+
+
+    app_title = ft.Row(
+        [
+            ft.Text("Measurement", font_family="RobotoMono-Regular",style="displayLarge")
+        ],
+        alignment="center"
+    )   
     
+    
+    
+    enter_width = ft.Text("Enter Width:", size=22)
     width = ft.TextField(value="", text_align=ft.TextAlign.RIGHT, width=100)
+    row_01 = ft.Row([enter_width, width])
+    enter_height = ft.Text("Enter Height:", size=22)
     height = ft.TextField(value="", text_align=ft.TextAlign.RIGHT, width=100)
-    
+    row_02 = ft.Row([enter_height, height])
+    enter_new_width = ft.Text("New Width", size=22)
     resWidth = ft.TextField(value="", text_align=ft.TextAlign.RIGHT, width=100)
+    row_03 = ft.Row([enter_new_width, resWidth])
+    enter_new_height = ft.Text("New Width", size=22)
     resHeight = ft.TextField(value="", text_align=ft.TextAlign.RIGHT, width=100)
+    row_04 = ft.Row([enter_new_height, resHeight])
     viwer = ft.Row()
+    container = ft.Column([row_01, row_02, row_03, row_04])
+    
+    data_container = ft.Container(
+        content= container,
+        width= 750,
+        height= 500,
+        bgcolor="#4d4d4d",
+        border_radius=30,
+        padding=20,
+    )
+    
+    
+    
+    
+    
+    
     
     def clear_text(e):
         width.value=""
@@ -36,35 +72,8 @@ def main(page: ft.Page):
             
     
     page.add(
-        ft.Row(
-            [
-                ft.Text("Enter Width:", size=22),
-                width,
-            ], 
-            alignment=ft.MainAxisAlignment.CENTER
-        ),
-        ft.Row(
-            [
-                ft.Text("Enter Height:", size=22),
-                height,
-                
-            ], 
-            alignment=ft.MainAxisAlignment.CENTER
-        ),
-        ft.Row(
-            [
-                ft.Text("New Width", size=22),
-                resWidth,
-            ], 
-            alignment=ft.MainAxisAlignment.CENTER
-        ),
-        ft.Row(
-            [
-                ft.Text("New Height", size=22),
-                resHeight,
-            ], 
-            alignment=ft.MainAxisAlignment.CENTER
-        ),
+        app_title,
+        data_container,
         ft.Row(
             [
                 ft.ElevatedButton(text="Clear", on_click= clear_text),
@@ -76,4 +85,4 @@ def main(page: ft.Page):
         viwer
     )
 
-ft.app(target=main)
+ft.app(target=main, assets_dir="assets")
