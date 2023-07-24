@@ -1,4 +1,5 @@
 import flet as ft
+import keyboard
 
 def main(page: ft.Page):
     page.title = "Calculator"
@@ -61,8 +62,8 @@ def main(page: ft.Page):
             result = str(int(width.value) * int(resHeight.value) / int(height.value))
             viwer.controls.append(ft.Text(f"Result: {result}", size=40, font_family="RobotoMono-Bold"))
             page.update()
-    
-    
+            
+
     page.add(
         app_title,
         data_container,
@@ -78,5 +79,6 @@ def main(page: ft.Page):
             ], alignment="center"
         )
     )
+    keyboard.add_hotkey("return", calculate)
 
 ft.app(target=main, assets_dir="assets")
